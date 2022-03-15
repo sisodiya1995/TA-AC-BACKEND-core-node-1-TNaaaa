@@ -6,13 +6,18 @@ console.log('Welcome to Nodejs');
 var os = require('os');
 //console.log(os);
 
-console.log(os.cpus())
+console.log(os.cpus().length)
 console.log(os.freemem())
 console.log(os.uptime())
 console.log(os.version())
 
 //3 
-var {readFile ,unlink} = require('fs');
+var {readFile , readFileSync,fstat,unlink} = require('fs');
+var sync = readFileSync('./app.js')
+readFile('./app.js',(err ,content) => {
+    console.log((err , content.toString()))
+})
+
 //4   
 
 var {parse} = require('url') 
