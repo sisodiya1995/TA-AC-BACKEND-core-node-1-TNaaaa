@@ -25,6 +25,7 @@ Application
 for example:- 
   - "/" -> render `index.html`
   - "/about" -> render `about.html`
+  
 
 2. handle requests for all css files in a single seperate router
 for example:- 
