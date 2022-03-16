@@ -12,7 +12,7 @@ server.listen(5000, () => {
   console.log("server listioning on port 5000");
 });
 
-2
+//2
 
 var http = require("http");
 
@@ -27,11 +27,12 @@ server.listen(5100, () => {
   console.log("server listioning on port 5100");
 });
 
-3
+//3
 var http = require("http");
 
 function handleRequest(req, res) {
-    res.setHeader("Content-Type", "text/html");
+    console.log(req.headers)
+    res.end(req.headers['user-agent'])
   
 }
 
@@ -40,11 +41,12 @@ server.listen(5555, () => {
   console.log("server listioning on port 5555");
 });
 
-4
+//4
 var http = require("http");
 
 function handleRequest(req, res) {
     console.log(req.method ,req.url)
+    res.end(req.method + req.url)
   
 }
 
@@ -53,14 +55,28 @@ server.listen(5566, () => {
   console.log("server listioning on port 5566");
 });
 
-5
+//5
 
-6
+var http = require("http");
+
+function handleRequest(req, res) {
+    //console.log(req.method ,req.url)
+    res.end(JSON.stringify(req.headers))
+  
+}
+
+var server = http.createServer(handleRequest);
+server.listen(7000, () => {
+  console.log("server listening on port 7000");
+});
+
+//6
 var http = require("http");
 
 function handleRequest(req, res) {
     
-  res.statusCode = 201 ;
+  res.statusCode = 202;
+  res.end(JSON.stringify(req.headers))
 }
 
 var server = http.createServer(handleRequest);
@@ -68,7 +84,7 @@ server.listen(3333, () => {
   console.log("server listioning on port 3333");
 });
 
-7
+//7
 
 var http = require("http");
 
@@ -83,7 +99,7 @@ server.listen(8888, () => {
   console.log("server listioning on port 8888");
 });
 
-8
+//8
 var http = require("http");
 var server = http.createServer(handleRequest);
 function handleRequest(req, res) {
@@ -96,19 +112,21 @@ server.listen(8000, () => {
   console.log("server listioning on port 8000");
 });
 
-9
+//9
 var http = require("http");
 var server = http.createServer(handleRequest);
 function handleRequest(req, res) {
+    console.log(req.method)
     res.setHeader("Content-Type", "application/json");
-    res.end("{success: true, message: 'Welcome to Nodejs'}");
+    res.end(JSON.stringify({success: true, message: 'Welcome to Nodejs'}));
 }
 
 
 server.listen(8888, () => {
   console.log("server listioning on port 8888");
 });
-10
+
+//10
 var http = require("http");
 var server = http.createServer(handleRequest);
 function handleRequest(req, res) {
@@ -139,7 +157,7 @@ function handleRequest(req, res) {
         res.end('<h1>Akash Singh</h1>')
     }else{
         res.statusCode = 404;
-        res.end();
+        res.end('Page are not found');
     }
     
 }
@@ -165,7 +183,7 @@ function handleRequest(req, res) {
         res.end('<h1>Posted for the second time</h1>')
     } else {
         res.statusCode = 404;
-        res.end();
+        res.end('Page are not found');
     }
     
 }
@@ -173,7 +191,7 @@ function handleRequest(req, res) {
 server.listen(2355, () => {
   console.log("server listioning on port 2355");
 });
-14
+//14
 
 var http = require("http");
 var fs = require('fs')
@@ -191,6 +209,24 @@ function handleRequest(req, res) {
         res.statusCode = 404;
         res.end();
     }
+    
+}
+
+server.listen(2355, () => {
+  console.log("server listioning on port 2355");
+});
+
+//15
+
+var http = require("http");
+var fs = require('fs');
+var url = require('url');
+var server = http.createServer(handleRequest);
+function handleRequest(req, res) {
+    var parseUrl = url.parse(req.url , true);
+    console.log(parseUrl.pathname ,req.url)
+    res.setHeader('Content-Type' , 'text/html')
+    res.end(JSON.stringify(parseUrl.query))
     
 }
 
